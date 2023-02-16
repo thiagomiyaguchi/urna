@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+}
+
+.painel {
+  display: flex;
+}
+
+.tela {
+  width: 67%;
+}
+.teclas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 80px);
+  gap: 10px;
+  width: 33%;
+}
+
+.zero {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.branco {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
