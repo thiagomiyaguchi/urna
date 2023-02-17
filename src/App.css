@@ -26,3 +26,29 @@
   grid-column-start: 1;
   grid-column-end: 2;
 }
+
+.digitos {
+  display: flex;
+  margin-left: 38%;
+}
+
+span {
+  min-width: 60px;
+  min-height: 80px;
+  border: 2px solid black;
+  font-size: 3rem;
+  margin: 2px;
+  padding: 2px;
+}
+
+.teclas {
+  background-color: rgb(167, 167, 167);
+  padding: 40px;
+}
+
+button {
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}

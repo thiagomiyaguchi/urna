@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
   const [digito1, setDigito1] = useState(null);
@@ -30,46 +30,48 @@ function App() {
   };
 
   return (
-    <div className='App'>
+    <div className="App">
       <h1>Votação Colégio Trivium</h1>
-      <div className='painel'>
-        <div className='tela'>
+      <div className="painel">
+        <div className="tela">
           <h2>Presidente</h2>
-          <span>{digito1}</span>
-          <span>{digito2}</span>
+          <div class="digitos">
+            <span>{digito1}</span>
+            <span>{digito2}</span>
+          </div>
         </div>
-        <div className='teclas'>
-          <button onClick={mostraDigito} className='numero'>
+        <div className="teclas">
+          <button onClick={mostraDigito} className="numero">
             1
           </button>
-          <button onClick={mostraDigito} className='numero'>
+          <button onClick={mostraDigito} className="numero">
             2
           </button>
-          <button onClick={mostraDigito} className='numero'>
+          <button onClick={mostraDigito} className="numero">
             3
           </button>
-          <button onClick={mostraDigito} className='numero'>
+          <button onClick={mostraDigito} className="numero">
             4
           </button>
-          <button onClick={mostraDigito} className='numero'>
+          <button onClick={mostraDigito} className="numero">
             5
           </button>
-          <button onClick={mostraDigito} className='numero'>
+          <button onClick={mostraDigito} className="numero">
             6
           </button>
-          <button onClick={mostraDigito} className='numero'>
+          <button onClick={mostraDigito} className="numero">
             7
           </button>
-          <button onClick={mostraDigito} className='numero'>
+          <button onClick={mostraDigito} className="numero">
             8
           </button>
-          <button onClick={mostraDigito} className='numero'>
+          <button onClick={mostraDigito} className="numero">
             9
           </button>
-          <button onClick={mostraDigito} className='numero zero'>
+          <button onClick={mostraDigito} className="numero zero">
             0
           </button>
-          <button onClick={mostraDigito} className='branco'>
+          <button onClick={mostraDigito} className="branco">
             Branco
           </button>
           <button onClick={corrige}>Corrige</button>
