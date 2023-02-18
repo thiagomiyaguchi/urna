@@ -22,6 +22,17 @@ button {
 }
 
 .branco {
+  color: black;
+  background: linear-gradient(145deg, #ebe5e5, #fffefe);
   grid-column-start: 1;
   grid-column-end: 2;
+}
+
+.corrige {
+  color: black;
+  background: linear-gradient(145deg, #f59313, #c77210);
+}
+.confirma {
+  color: black;
+  background: linear-gradient(145deg, #26d40f, #0d7c0d);
 }

@@ -33,9 +33,15 @@ function Teclas(props) {
       <button onClick={props.mostraDigito} className='numero zero'>
         0
       </button>
-      <button className='branco'>Branco</button>
-      <button onClick={props.corrige}>Corrige</button>
-      <button onClick={props.confirma}>Confirma</button>
+      <button onClick={props.branco} className='branco'>
+        Branco
+      </button>
+      <button onClick={props.corrige} className='corrige'>
+        Corrige
+      </button>
+      <button onClick={props.confirma} className='confirma'>
+        Confirma
+      </button>
     </div>
   );
 }

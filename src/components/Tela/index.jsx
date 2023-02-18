@@ -10,8 +10,10 @@ function Tela(props) {
       </div>
       {props.candidato.nome && (
         <div className='candidato'>
-          <p>Nome: {props.candidato.nome}</p>{' '}
-          <img src={props.candidato.foto} alt='Imagem do Candidato' />
+          {props.candidato.foto && (
+            <img src={props.candidato.foto} alt='Imagem do Candidato' />
+          )}
+          <p>{props.candidato.nome}</p>
         </div>
       )}
       {props.candidato.nulo && <p>Voto Nulo</p>}
