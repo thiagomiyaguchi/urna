@@ -34,7 +34,6 @@ function App() {
   const [candidato, setCandidato] = useState({});
   const [votos, setVotos] = useState(getLocalStorage());
   const [telaFim, setTelaFim] = useState(false);
-  const [votoNulo, setvotoNulo] = useState(true);
 
   useEffect(() => {
     switch (digito1 + digito2) {
@@ -130,19 +129,19 @@ function App() {
 
   const confirma = () => {
     new Audio(somConfirma).play();
+    let votoNulo = true;
 
     for (const candidato in votos) {
-      setvotoNulo(true);
       if (digito1 + digito2 == votos[candidato].numero) {
         setVotos({ ...votos }, votos[candidato].votos++);
         localStorage.setItem('votos', JSON.stringify(votos));
-        setvotoNulo(false);
+        votoNulo = false;
       }
     }
     if (votoNulo) {
       setVotos({ ...votos }, votos[11].votos++);
       localStorage.setItem('votos', JSON.stringify(votos));
-      setvotoNulo(false);
+      votoNulo = false;
     }
 
     setTelaFim(true);
