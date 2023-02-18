@@ -1,20 +1,33 @@
-import { useEffect, useState } from "react";
-import "./App.css";
+import { useEffect, useState } from 'react';
+import './App.css';
+import Teclas from './components/Teclas';
+import Tela from './components/Tela';
 
 function App() {
   const [digito1, setDigito1] = useState(null);
   const [digito2, setDigito2] = useState(null);
+  const [candidato, setCandidato] = useState({});
 
-  // useEffect(() => {
-  //   const botao = document.querySelectorAll('.numero');
-  //   botao.forEach((item) => {
-  //     item.addEventListener('click', mostraDigito);
-  //   });
-  //   return () =>
-  //     botao.forEach((item) => {
-  //       item.removeEventListener('click', mostraDigito);
-  //     });
-  // }, [digito1]);
+  useEffect(() => {
+    switch (digito1 + digito2) {
+      case 0:
+        break;
+      case '22':
+        setCandidato({
+          nome: 'Jair Bolsonaro',
+          foto: 'bolsonaro.png',
+        });
+        break;
+      case '50':
+        setCandidato({
+          nome: 'Giovanna Rebizzi',
+          foto: 'bolsonaro.png',
+        });
+        break;
+      default:
+        setCandidato({ nulo: true });
+    }
+  }, [digito2]);
 
   const mostraDigito = (e) => {
     return digito2
@@ -27,102 +40,25 @@ function App() {
   const corrige = () => {
     setDigito1(null);
     setDigito2(null);
+    setCandidato({});
+  };
+
+  const confirma = () => {
+    setDigito1(null);
+    setDigito2(null);
+    setCandidato({});
   };
 
   return (
-    <div className="App">
+    <div className='App'>
       <h1>Votação Colégio Trivium</h1>
-      <div className="painel">
-        <div className="tela">
-          <h2>Presidente</h2>
-          <div class="digitos">
-            <span>{digito1}</span>
-            <span>{digito2}</span>
-          </div>
-        </div>
-        <div className="teclas">
-          <button
-            class="shadow-drop-2-center"
-            onClick={mostraDigito}
-            className="numero"
-          >
-            1
-          </button>
-          <button
-            class="shadow-drop-2-center"
-            onClick={mostraDigito}
-            className="numero"
-          >
-            2
-          </button>
-          <button
-            class="shadow-drop-2-center"
-            onClick={mostraDigito}
-            className="numero"
-          >
-            3
-          </button>
-          <button
-            class="shadow-drop-2-center"
-            onClick={mostraDigito}
-            className="numero"
-          >
-            4
-          </button>
-          <button
-            class="shadow-drop-2-center"
-            onClick={mostraDigito}
-            className="numero"
-          >
-            5
-          </button>
-          <button
-            class="shadow-drop-2-center"
-            onClick={mostraDigito}
-            className="numero"
-          >
-            6
-          </button>
-          <button
-            class="shadow-drop-2-center"
-            onClick={mostraDigito}
-            className="numero"
-          >
-            7
-          </button>
-          <button
-            class="shadow-drop-2-center"
-            onClick={mostraDigito}
-            className="numero"
-          >
-            8
-          </button>
-          <button
-            class="shadow-drop-2-center"
-            onClick={mostraDigito}
-            className="numero"
-          >
-            9
-          </button>
-          <button
-            class="shadow-drop-2-center"
-            onClick={mostraDigito}
-            className="numero zero"
-          >
-            0
-          </button>
-          <button
-            class="shadow-drop-2-center"
-            onClick={mostraDigito}
-            className="branco"
-          >
-            Branco
-          </button>
-          <button class="shadow-drop-2-center" onClick={corrige}>
-            Corrige
-          </button>
-          <button class="shadow-drop-2-center">Confirma</button>
-        </div>
+      <div className='painel'>
+        <Tela digito1={digito1} digito2={digito2} candidato={candidato} />
+        <Teclas
+          corrige={corrige}
+          mostraDigito={mostraDigito}
+          confirma={confirma}
+        />
       </div>
     </div>
   );

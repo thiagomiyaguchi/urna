@@ -1,0 +1,25 @@
+.tela {
+  width: 67%;
+  height: 100%;
+}
+
+.digitos {
+  display: flex;
+  justify-content: center;
+}
+
+span {
+  min-width: 60px;
+  min-height: 80px;
+  border: 2px solid black;
+  font-size: 3rem;
+  margin: 2px;
+  padding: 2px;
+}
+
+.candidato {
+  height: 380px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

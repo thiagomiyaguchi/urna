@@ -1,0 +1,27 @@
+.teclas {
+  background-color: #363030;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 80px);
+  gap: 10px;
+  width: 33%;
+}
+
+button {
+  color: white;
+  font-size: 1.6rem;
+  border-radius: 0px;
+  background: linear-gradient(145deg, #3a3333, #312b2b);
+  box-shadow: 7px 7px 14px #2e2929, -7px -7px 14px #423b3b;
+}
+
+.zero {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.branco {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
