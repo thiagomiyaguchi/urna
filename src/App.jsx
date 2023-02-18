@@ -23,7 +23,7 @@ const getLocalStorage = () => {
       { nome: 'Beatriz', votos: 0, numero: 56 },
       { nome: 'Felipe', votos: 0, numero: 77 },
       { nome: 'Branco', votos: 0, numero: '--' },
-      { nome: 'Nulos', votos: 0 },
+      { nome: 'Nulos', votos: 0, numero: 'xx' },
     ];
   }
 };
@@ -34,6 +34,7 @@ function App() {
   const [candidato, setCandidato] = useState({});
   const [votos, setVotos] = useState(getLocalStorage());
   const [telaFim, setTelaFim] = useState(false);
+  const [votoNulo, setvotoNulo] = useState(true);
 
   useEffect(() => {
     switch (digito1 + digito2) {
@@ -129,59 +130,19 @@ function App() {
 
   const confirma = () => {
     new Audio(somConfirma).play();
-    switch (digito1 + digito2) {
-      case 0:
-        setVotos({ ...votos }, votos[11].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
-      case '13':
-        setVotos({ ...votos }, votos[0].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
-      case '15':
-        setVotos({ ...votos }, votos[1].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
-      case '22':
-        setVotos({ ...votos }, votos[2].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
-      case '23':
-        setVotos({ ...votos }, votos[3].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
-      case '24':
-        setVotos({ ...votos }, votos[4].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
-      case '25':
-        setVotos({ ...votos }, votos[5].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
-      case '30':
-        setVotos({ ...votos }, votos[6].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
-      case '50':
-        setVotos({ ...votos }, votos[7].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
-      case '56':
-        setVotos({ ...votos }, votos[8].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
-      case '77':
-        setVotos({ ...votos }, votos[9].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
-      case '--':
-        setVotos({ ...votos }, votos[10].votos++);
-        localStorage.setItem('votos', JSON.stringify(votos));
-        break;
 
-      default:
-        setVotos({ ...votos }, votos[11].votos++);
+    for (const candidato in votos) {
+      setvotoNulo(true);
+      if (digito1 + digito2 == votos[candidato].numero) {
+        setVotos({ ...votos }, votos[candidato].votos++);
         localStorage.setItem('votos', JSON.stringify(votos));
+        setvotoNulo(false);
+      }
+    }
+    if (votoNulo) {
+      setVotos({ ...votos }, votos[11].votos++);
+      localStorage.setItem('votos', JSON.stringify(votos));
+      setvotoNulo(false);
     }
 
     setTelaFim(true);
