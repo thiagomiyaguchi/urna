@@ -3,7 +3,7 @@ import('./Tela.css');
 function Tela(props) {
   return (
     <div className='tela'>
-      <h2>Presidente</h2>
+      <h2>President</h2>
       <div className='digitos'>
         <span>{props.digito1}</span>
         <span>{props.digito2}</span>

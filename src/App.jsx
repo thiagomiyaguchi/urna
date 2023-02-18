@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Teclas from './components/Teclas';
 import Tela from './components/Tela';
+import pi from './pi.mp3';
+import somConfirma from './confirma.mp3';
+import bolsonaro from './bolsonaro.png';
 
 const getLocalStorage = () => {
   let votos = localStorage.getItem('votos');
@@ -30,6 +33,7 @@ function App() {
   const [digito2, setDigito2] = useState(null);
   const [candidato, setCandidato] = useState({});
   const [votos, setVotos] = useState(getLocalStorage());
+  const [telaFim, setTelaFim] = useState(false);
 
   useEffect(() => {
     switch (digito1 + digito2) {
@@ -38,61 +42,61 @@ function App() {
       case '13':
         setCandidato({
           nome: 'Marcela',
-          foto: 'bolsonaro.png',
+          foto: bolsonaro,
         });
         break;
       case '15':
         setCandidato({
           nome: 'Pietra',
-          foto: 'bolsonaro.png',
+          foto: bolsonaro,
         });
         break;
       case '22':
         setCandidato({
           nome: 'Jair Bolsonaro',
-          foto: 'bolsonaro.png',
+          foto: bolsonaro,
         });
         break;
       case '23':
         setCandidato({
           nome: 'Vitória',
-          foto: 'bolsonaro.png',
+          foto: bolsonaro,
         });
         break;
       case '24':
         setCandidato({
           nome: 'Adhemir Calixto',
-          foto: 'bolsonaro.png',
+          foto: bolsonaro,
         });
         break;
       case '25':
         setCandidato({
           nome: 'Matheus',
-          foto: 'bolsonaro.png',
+          foto: bolsonaro,
         });
         break;
       case '30':
         setCandidato({
           nome: 'Giovanna Rebizzi',
-          foto: 'bolsonaro.png',
+          foto: bolsonaro,
         });
         break;
       case '50':
         setCandidato({
           nome: 'Maria Eduarda',
-          foto: 'bolsonaro.png',
+          foto: bolsonaro,
         });
         break;
       case '56':
         setCandidato({
           nome: 'Beatriz',
-          foto: 'bolsonaro.png',
+          foto: bolsonaro,
         });
         break;
       case '77':
         setCandidato({
           nome: 'Felipe Otávio',
-          foto: 'bolsonaro.png',
+          foto: bolsonaro,
         });
         break;
       case '--':
@@ -107,6 +111,8 @@ function App() {
   }, [digito2]);
 
   const mostraDigito = (e) => {
+    new Audio(pi).play();
+
     return digito2
       ? null
       : digito1
@@ -115,14 +121,18 @@ function App() {
   };
 
   const corrige = () => {
+    new Audio(pi).play();
     setDigito1(null);
     setDigito2(null);
     setCandidato({});
   };
 
   const confirma = () => {
+    new Audio(somConfirma).play();
     switch (digito1 + digito2) {
       case 0:
+        setVotos({ ...votos }, votos[11].votos++);
+        localStorage.setItem('votos', JSON.stringify(votos));
         break;
       case '13':
         setVotos({ ...votos }, votos[0].votos++);
@@ -174,28 +184,43 @@ function App() {
         localStorage.setItem('votos', JSON.stringify(votos));
     }
 
+    setTelaFim(true);
     setDigito1(null);
     setDigito2(null);
     setCandidato({});
   };
 
   const branco = () => {
+    new Audio(pi).play();
     setDigito1('-');
     setDigito2('-');
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTelaFim(false);
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [telaFim]);
+
   return (
     <div className='App'>
-      <h1>Votação Colégio Trivium</h1>
-      <div className='painel'>
-        <Tela digito1={digito1} digito2={digito2} candidato={candidato} />
-        <Teclas
-          corrige={corrige}
-          mostraDigito={mostraDigito}
-          confirma={confirma}
-          branco={branco}
-        />
-      </div>
+      <h1>Trivium's Election - 2023</h1>
+      {telaFim ? (
+        <div className='fim'>
+          <p className='texto-fim'>FIM</p>
+        </div>
+      ) : (
+        <div className='painel'>
+          <Tela digito1={digito1} digito2={digito2} candidato={candidato} />
+          <Teclas
+            corrige={corrige}
+            mostraDigito={mostraDigito}
+            confirma={confirma}
+            branco={branco}
+          />
+        </div>
+      )}
     </div>
   );
 }
