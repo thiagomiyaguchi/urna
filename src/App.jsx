@@ -39,74 +39,18 @@ function App() {
     switch (digito1 + digito2) {
       case 0:
         break;
-      case '13':
-        setCandidato({
-          nome: 'Marcela',
-          foto: bolsonaro,
-        });
-        break;
-      case '15':
-        setCandidato({
-          nome: 'Pietra',
-          foto: bolsonaro,
-        });
-        break;
-      case '22':
-        setCandidato({
-          nome: 'Jair Bolsonaro',
-          foto: bolsonaro,
-        });
-        break;
-      case '23':
-        setCandidato({
-          nome: 'Vitória',
-          foto: bolsonaro,
-        });
-        break;
-      case '24':
-        setCandidato({
-          nome: 'Adhemir Calixto',
-          foto: bolsonaro,
-        });
-        break;
-      case '25':
-        setCandidato({
-          nome: 'Matheus',
-          foto: bolsonaro,
-        });
-        break;
-      case '30':
-        setCandidato({
-          nome: 'Giovanna Rebizzi',
-          foto: bolsonaro,
-        });
-        break;
-      case '50':
-        setCandidato({
-          nome: 'Maria Eduarda',
-          foto: bolsonaro,
-        });
-        break;
-      case '56':
-        setCandidato({
-          nome: 'Beatriz',
-          foto: bolsonaro,
-        });
-        break;
-      case '77':
-        setCandidato({
-          nome: 'Felipe Otávio',
-          foto: bolsonaro,
-        });
-        break;
       case '--':
         setCandidato({
           nome: 'Branco',
         });
         break;
-
       default:
         setCandidato({ nulo: true });
+    }
+    for (let candidato in votos) {
+      if (digito1 + digito2 == votos[candidato].numero) {
+        setCandidato({ nome: votos[candidato].nome, foto: bolsonaro });
+      }
     }
   }, [digito2]);
 
