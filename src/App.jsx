@@ -12,16 +12,16 @@ const getLocalStorage = () => {
     return (votos = JSON.parse(localStorage.getItem('votos')));
   } else {
     return [
-      { nome: 'Marcela', votos: 0, numero: 13 },
-      { nome: 'Pietra', votos: 0, numero: 15 },
-      { nome: 'Jair', votos: 0, numero: 22 },
-      { nome: 'Vitória', votos: 0, numero: 23 },
-      { nome: 'Adhemir', votos: 0, numero: 24 },
-      { nome: 'Matheus', votos: 0, numero: 25 },
-      { nome: 'Giovanna', votos: 0, numero: 30 },
-      { nome: 'Maria Eduarda', votos: 0, numero: 50 },
-      { nome: 'Beatriz', votos: 0, numero: 56 },
-      { nome: 'Felipe', votos: 0, numero: 77 },
+      { nome: 'Marcela', votos: 0, numero: 13, foto: bolsonaro },
+      { nome: 'Pietra', votos: 0, numero: 15, foto: bolsonaro },
+      { nome: 'Jair', votos: 0, numero: 22, foto: bolsonaro },
+      { nome: 'Vitória', votos: 0, numero: 23, foto: bolsonaro },
+      { nome: 'Adhemir', votos: 0, numero: 24, foto: bolsonaro },
+      { nome: 'Matheus', votos: 0, numero: 25, foto: bolsonaro },
+      { nome: 'Giovanna', votos: 0, numero: 30, foto: bolsonaro },
+      { nome: 'Maria Eduarda', votos: 0, numero: 50, foto: bolsonaro },
+      { nome: 'Beatriz', votos: 0, numero: 56, foto: bolsonaro },
+      { nome: 'Felipe', votos: 0, numero: 77, foto: bolsonaro },
       { nome: 'Branco', votos: 0, numero: '--' },
       { nome: 'Nulos', votos: 0, numero: 'xx' },
     ];
@@ -49,7 +49,10 @@ function App() {
     }
     for (let candidato in votos) {
       if (digito1 + digito2 == votos[candidato].numero) {
-        setCandidato({ nome: votos[candidato].nome, foto: bolsonaro });
+        setCandidato({
+          nome: votos[candidato].nome,
+          foto: votos[candidato].foto,
+        });
       }
     }
   }, [digito2]);
